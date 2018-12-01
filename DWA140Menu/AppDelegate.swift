@@ -2,14 +2,14 @@
 //  AppDelegate.swift
 //  DWA140Menu
 //
-//  Created by Dylan Bolger on 9/3/18.
-//  Copyright © 2018 Dylan Bolger. All rights reserved.
+//  Created by FivePixels on 9/3/18.
+//  Copyright © 2018 FivePixels. All rights reserved.
 //
 
 import Cocoa
 import Foundation
 
-//Lines 14 - 96 https://stackoverflow.com/a/39175667
+// lines 14 - 96 https://stackoverflow.com/a/39175667
 
 struct Networking {
     
