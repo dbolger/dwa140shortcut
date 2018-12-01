@@ -1,7 +1,7 @@
 # dwa140shortcut
 A shortcut menu bar application for macOS computers using the DWA-140 Preference Pane.
 
-You can download this application [here](https://github.com/fivepixels/dwa140shortcut/releases)
+You can download this application [here](https://github.com/fivepixels/dwa140shortcut/releases).
 
 ![alt text](https://raw.githubusercontent.com/FivePixels/dwa140shortcut/master/DWA140ShortcutScreenshot.png)
 
