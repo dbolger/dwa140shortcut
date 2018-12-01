@@ -24,5 +24,5 @@ Open the DMG, and drag the application into the Applications folder.
 
 ## Upcoming
 
--  Add as a login item
--  User requested features..?
+-  *Automatically* add as a login item
+-  ?
