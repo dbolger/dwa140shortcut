@@ -20,3 +20,9 @@ Open the DMG, and drag the application into the Applications folder.
 
 
 ![alt text](https://raw.githubusercontent.com/FivePixels/dwa140shortcut/master/DWAInstallGIF.gif)
+
+
+## Upcoming
+
+-  Add as a login item
+-  User requested features..?
