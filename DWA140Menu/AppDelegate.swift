@@ -45,6 +45,7 @@ struct Networking {
     }
     
     
+    
     // Credit to Martin R http://stackoverflow.com/a/34016247/600753 for this lovely code
     // New Swift 3 implementation needed upated to replace unsafepointer calls with .withMemoryRebound
     func getInterfaces() -> [(name : String, addr: String, mac : String)] {
@@ -99,13 +100,14 @@ struct Networking {
         
         freeifaddrs(ifaddr)
         
+        
+        
         // Now add the mac address to the tuples:
         for (i, addr) in addresses.enumerated() {
             if let mac = nameToMac[addr.name] {
                 addresses[i] = (name: addr.name, addr: addr.addr, mac : mac)
             }
         }
-        
         return addresses
     }
 }
@@ -113,17 +115,17 @@ struct Networking {
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc func openCredits() {
-        let myWindowController = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil).instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "credits")) as! NSWindowController
-        myWindowController.showWindow(self)
+        
+        NSWorkspace.shared.open((URL(string:"https://github.com/fivepixels/dwa140shortcut") ?? nil)!)
     }
     
     @objc func changeIcon() {
         if let button = statusItem.button {
             if Networking.isConnectedByEthernet {
-                button.image = NSImage(named: NSImage.Name(rawValue: "WifiConnected"))
+                button.image = NSImage(named: "WifiConnected")
            
             } else {
-                button.image = NSImage(named: NSImage.Name(rawValue: "wifierror"))
+                button.image = NSImage(named: "WifiError")
             }
         }
         
@@ -152,7 +154,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     @objc func ethStatus() -> String {
         if Networking.isConnectedByEthernet {
-            return "USB WiFi is connected. (en4)"
+            return "USB WiFi is connected."
         } else {
             return "USB WiFi is disconnected."
         }
@@ -162,25 +164,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        
         changeIcon()
-        
-constructMenu()
-    }
+        constructMenu()
+        }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
     func constructMenu() {
         let menu = NSMenu()
-        menu.addItem(NSMenuItem(title: "DWA-140 Shortcut", action: #selector(openCredits), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "DWA-140 Shortcut (GitHub)", action: #selector(openCredits), keyEquivalent: ""))
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: ethStatus(), action: nil, keyEquivalent: ""))
-        menu.addItem(NSMenuItem(title: "Refresh Status", action: #selector(restartApp), keyEquivalent: ""))
-        menu.addItem(NSMenuItem(title: "Open DWA-140" , action: #selector(openDWA), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "Refresh Status", action: #selector(restartApp), keyEquivalent: "r"))
+        menu.addItem(NSMenuItem(title: "Open DWA-140" , action: #selector(openDWA), keyEquivalent: "t1"))
         menu.addItem(NSMenuItem(title: "Network Preferences" , action: #selector(openNetwork), keyEquivalent: ""))
         menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
+        menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: ""))
         
         statusItem.menu = menu
     

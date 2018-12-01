@@ -194,13 +194,16 @@
 				TargetAttributes = {
 					E7DA7E45213DD9DD00931016 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 					};
 					E7DA7E57213DD9DD00931016 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 						TestTargetID = E7DA7E45213DD9DD00931016;
 					};
 					E7DA7E62213DD9DD00931016 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 						TestTargetID = E7DA7E45213DD9DD00931016;
 					};
 				};
@@ -336,7 +339,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -397,7 +400,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -433,7 +436,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.FivePixels.DWA140Menu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -451,7 +454,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.FivePixels.DWA140Menu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -470,7 +473,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.FivePixels.DWA140MenuTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DWA140Menu.app/Contents/MacOS/DWA140Menu";
 			};
 			name = Debug;
@@ -490,7 +493,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.FivePixels.DWA140MenuTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DWA140Menu.app/Contents/MacOS/DWA140Menu";
 			};
 			name = Release;
@@ -509,7 +512,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.FivePixels.DWA140MenuUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_TARGET_NAME = DWA140Menu;
 			};
 			name = Debug;
@@ -528,7 +531,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.FivePixels.DWA140MenuUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TEST_TARGET_NAME = DWA140Menu;
 			};
 			name = Release;

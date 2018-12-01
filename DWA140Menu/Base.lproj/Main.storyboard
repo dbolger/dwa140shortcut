@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -680,48 +680,5 @@
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
-        <!--Window Controller-->
-        <scene sceneID="Qjy-2V-LMd">
-            <objects>
-                <windowController storyboardIdentifier="credits" showSeguePresentationStyle="single" id="nRX-BA-ezW" sceneMemberID="viewController">
-                    <window key="window" title="Credits" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="rZh-6e-Tf1">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
-                        <rect key="contentRect" x="735" y="354" width="475" height="195"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
-                        <connections>
-                            <outlet property="delegate" destination="nRX-BA-ezW" id="gZ6-jx-7xG"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="0aO-16-CgC" kind="relationship" relationship="window.shadowedContentViewController" id="pKN-ne-ylG"/>
-                    </connections>
-                </windowController>
-                <customObject id="ggv-1R-9Ps" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-40" y="580"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Mzy-En-CiB">
-            <objects>
-                <viewController id="0aO-16-CgC" sceneMemberID="viewController">
-                    <view key="view" id="bth-bX-hYV">
-                        <rect key="frame" x="0.0" y="0.0" width="475" height="195"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RcP-h0-2uh">
-                                <rect key="frame" x="-3" y="-3" width="480" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="CreditsPNG" id="Xsm-jF-xX3"/>
-                            </imageView>
-                        </subviews>
-                    </view>
-                </viewController>
-                <customObject id="zDu-Zs-kKh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="666.5" y="554.5"/>
-        </scene>
     </scenes>
-    <resources>
-        <image name="CreditsPNG" width="480" height="200"/>
-    </resources>
 </document>
