@@ -6,4 +6,4 @@ You can download this application [here](https://github.com/fivepixels/dwa140sho
 ![alt text](https://raw.githubusercontent.com/FivePixels/dwa140shortcut/master/DWA140ShortcutScreenshot.png)
 
 ## About
-This project was written in Swift. I've always used USB WiFi with my Hackintosh, and with this, I was required to use these "Drivers" that rig the system to send a connection through the Ethernet port. This application creates a menu icon that shows an accurate icon for your current connected state. It also contains other options, such as a button to update the status (by restarting the application) and a shortcut to the DWA-140 Preference Pane, as well as the Networks Preference Pane.
+This project was written in Swift. This application was specifically designed for my (USB WiFi) Hackintosh build. This menu bar option shows the current connection status (through the icon) and has a few System Preferences shortcuts to expedite getting your machine connected to the internet.
