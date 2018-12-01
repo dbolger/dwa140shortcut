@@ -39,7 +39,6 @@
 		E7DA7E4D213DD9DD00931016 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E7DA7E50213DD9DD00931016 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E7DA7E52213DD9DD00931016 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E7DA7E53213DD9DD00931016 /* DWA140Menu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DWA140Menu.entitlements; sourceTree = "<group>"; };
 		E7DA7E58213DD9DD00931016 /* DWA140MenuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DWA140MenuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7DA7E5C213DD9DD00931016 /* DWA140MenuTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWA140MenuTests.swift; sourceTree = "<group>"; };
 		E7DA7E5E213DD9DD00931016 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -103,7 +102,6 @@
 				E7DA7E4D213DD9DD00931016 /* Assets.xcassets */,
 				E7DA7E4F213DD9DD00931016 /* Main.storyboard */,
 				E7DA7E52213DD9DD00931016 /* Info.plist */,
-				E7DA7E53213DD9DD00931016 /* DWA140Menu.entitlements */,
 			);
 			path = DWA140Menu;
 			sourceTree = "<group>";
@@ -426,7 +424,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = DWA140Menu/DWA140Menu.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = DWA140Menu/Info.plist;
@@ -444,7 +442,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = DWA140Menu/DWA140Menu.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = DWA140Menu/Info.plist;
