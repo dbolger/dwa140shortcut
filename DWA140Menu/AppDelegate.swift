@@ -8,6 +8,9 @@
 
 import Cocoa
 import Foundation
+
+//Lines 14 - 96 https://stackoverflow.com/a/39175667
+
 struct Networking {
     
     enum NetworkInterfaceType: String, CustomStringConvertible {
@@ -95,6 +98,7 @@ struct Networking {
 class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
     @objc func changeIcon() {
+        // change the icon based on the current state (only called on application launch)
         if let button = statusItem.button {
             if Networking.isConnectedByEthernet {
                 button.image = NSImage(named: "WifiConnected")
@@ -107,6 +111,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSWorkspace.shared.open((URL(string:"https://github.com/fivepixels/dwa140shortcut") ?? nil)!)
     }
     @objc func ethStatus() -> String {
+        // check if the device is connected by Ethernet
         if Networking.isConnectedByEthernet {
             return "USB WiFi is connected."
         } else {
@@ -114,7 +119,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     @objc func refreshStatus() {
-        //recreate a new instance of the application
+        // recreate a new instance of the application
         let url = URL(fileURLWithPath: Bundle.main.resourcePath!)
         let path = url.deletingLastPathComponent().deletingLastPathComponent().absoluteString
         let task = Process()
@@ -124,19 +129,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         exit(0)
     }
     @objc func openDWA() {
+        // opens the DWA menu *if it exists* on the computer.
         let fileman = FileManager.default
         let alluserspath = "/Library/PreferencePanes/DWA-140WirelessUtility.prefPane"
         let currentuserpath = "~/Library/PreferencePanes/DWA-140WirelessUtility.prefPane"
         if fileman.fileExists(atPath: alluserspath) {
             NSWorkspace.shared.open(URL(fileURLWithPath: alluserspath)) }
-        else {
+        else if fileman.fileExists(atPath: currentuserpath) {
             NSWorkspace.shared.open(URL(fileURLWithPath: currentuserpath))
+        } else {
+            // don't do anything, preference pane doesn't exist.
         }
     }
     @objc func openNetwork() {
-        NSWorkspace.shared.open(URL(fileURLWithPath: "/System/Library/PreferencePanes/Network.prefPane"))
+        // open the Network pane, no need to check because every Mac *should* have this.
+            NSWorkspace.shared.open(URL(fileURLWithPath: "/System/Library/PreferencePanes/Network.prefPane"))
     }
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        // after the application launches, change the icon accordingly and create the menu.
         changeIcon()
         constructMenu()
         }
@@ -144,6 +154,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
     func constructMenu() {
+        // create the menu, with titles, actions, and keyEquivalents. didn't include many keyEquivs because the menu has to be open..
         let menu = NSMenu()
         menu.addItem(NSMenuItem(title: "DWA-140 Shortcut (GitHub)", action: #selector(openCredits), keyEquivalent: ""))
         menu.addItem(NSMenuItem.separator())
