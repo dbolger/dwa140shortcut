@@ -11,7 +11,9 @@ This project was written in Swift. This application was specifically designed fo
 **Make sure you have the following installed prior to installing this application:**
  - *RT2870USBWirelessDriver.kext* in /System/Library/Extensions/
  - *DWA-140WirelessUtility.prefPane* in either /Library/PreferencePanes/ or ~/Library/PreferencePanes/
- 
+
+---
+
 Download the latest DMG from the [Releases](https://github.com/fivepixels/dwa140shortcut/releases) page. 
 
 Open the DMG, and drag the application into the Applications folder.
