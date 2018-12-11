@@ -24,5 +24,6 @@ Open the DMG, and drag the application into the Applications folder.
 
 ## Upcoming
 
--  *Automatically* add as a login item
--  ?
+-  *Automatically* add this application to Login Items
+-  Update icon automatically
+-  Update icon according to actual range
