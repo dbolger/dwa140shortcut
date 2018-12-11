@@ -25,5 +25,6 @@ Open the DMG, and drag the application into the Applications folder.
 ## Upcoming
 
 -  *Automatically* add this application to Login Items
--  Update icon automatically
--  Update icon according to actual range
+-  Update menubar icon automatically
+-  Update menubar icon according to actual range from WiFi Network
+-  Perform a more realistic check for connection rather than just Ethernet
