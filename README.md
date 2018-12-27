@@ -6,6 +6,14 @@ A shortcut menu bar application for macOS computers using the DWA-140 Utility.
 ## About
 This project was written in Swift. This application was specifically designed for my (USB WiFi) Hackintosh build. This menu bar option shows the current connection status (through the icon) and has a few System Preferences shortcuts to expedite getting your machine connected to the internet.
 
+## Requirements
+
+ - macOS 10.12+ with administrator privileges
+ 
+For 10.10 and 10.11 support, click [here](https://github.com/FivePixels/dwa140shortcut/issues/1#issuecomment-449897887).
+
+macOS <= 10.9 is unsupported.
+
 ## Installation
 
 **Make sure you have the following installed prior to installing this application:**
@@ -24,7 +32,7 @@ Open the DMG, and drag the application into the Applications folder.
 
 ## Upcoming
 
--  *Automatically* add this application to Login Items
--  Update menubar icon automatically
--  Update menubar icon according to actual range from WiFi Network
--  Perform a more realistic check for connection rather than just Ethernet
+- [ ] *Automatically* add this application to Login Items
+- [ ] Update menubar icon automatically
+- [ ] Update menubar icon according to actual range from WiFi Network
+- [ ] Perform a more realistic check for connection rather than just Ethernet
