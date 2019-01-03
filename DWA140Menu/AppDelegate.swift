@@ -8,118 +8,47 @@
 
 import Cocoa
 import Foundation
+import Defaults
+import LaunchAtLogin
+import SystemConfiguration
 
-// lines 14 - 96 https://stackoverflow.com/a/39175667
-
-struct Networking {
-    
-    enum NetworkInterfaceType: String, CustomStringConvertible {
-        case Ethernet = "en2"
-        case Unknown = ""
-        var description: String {
-            switch self {
-            case .Ethernet:
-                return "Ethernet"
-            case .Unknown:
-                return "Unknown"
-            }
-        }
-    }
-    static var networkInterfaceType: NetworkInterfaceType {
-        if let name = Networking().getInterfaces().first?.name, let type = NetworkInterfaceType(rawValue: name) {
-            return type
-        }
-        return .Unknown
-    }
-    static var isConnectedByEthernet: Bool {
-        let networking = Networking()
-        for addr in networking.getInterfaces() {
-            if addr.name == NetworkInterfaceType.Ethernet.rawValue {
-                return true
-            }
-        }
-        return false
-    }
-    
-    func getInterfaces() -> [(name : String, addr: String, mac : String)] {
-        var addresses = [(name : String, addr: String, mac : String)]()
-        var nameToMac = [ String: String ]()
-        // Get list of all interfaces on the local machine:
-        var ifaddr : UnsafeMutablePointer<ifaddrs>?
-        guard getifaddrs(&ifaddr) == 0 else { return [] }
-        guard let firstAddr = ifaddr else { return [] }
-        // For each interface ...
-        for ptr in sequence(first: firstAddr, next: { $0.pointee.ifa_next }) {
-            let flags = Int32(ptr.pointee.ifa_flags)
-            if var addr = ptr.pointee.ifa_addr {
-                let name = String(cString: ptr.pointee.ifa_name)
-                // Check for running IPv4, IPv6 interfaces. Skip the loopback interface.
-                if (flags & (IFF_UP|IFF_RUNNING|IFF_LOOPBACK)) == (IFF_UP|IFF_RUNNING) {
-                    switch Int32(addr.pointee.sa_family) {
-                    case AF_LINK:
-                        nameToMac[name] = withUnsafePointer(to: &addr) { unsafeAddr in
-                            unsafeAddr.withMemoryRebound(to: sockaddr_dl.self, capacity: 1) { dl in
-                                dl.withMemoryRebound(to: Int8.self, capacity: 1) { dll in
-                                    let lladdr = UnsafeRawBufferPointer(start: dll + 8 + Int(dl.pointee.sdl_nlen), count: Int(dl.pointee.sdl_alen))
-                                    if lladdr.count == 6 {
-                                        return lladdr.map { String(format:"%02hhx", $0)}.joined(separator: ":")
-                                    } else {
-                                        return nil
-                                    }
-                                }
-                            }
-                        }
-                    case AF_INET, AF_INET6:
-                        // Convert interface address to a human readable string:
-                        var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
-                        if (getnameinfo(addr, socklen_t(addr.pointee.sa_len),
-                                        &hostname, socklen_t(hostname.count),
-                                        nil, socklen_t(0), NI_NUMERICHOST) == 0) {
-                            let address = String(cString: hostname)
-                            addresses.append( (name: name, addr: address, mac : "") )
-                        }
-                    default:
-                        break
-                    }
-                }
-            }
-        }
-        freeifaddrs(ifaddr)
-        // Now add the mac address to the tuples:
-        for (i, addr) in addresses.enumerated() {
-            if let mac = nameToMac[addr.name] {
-                addresses[i] = (name: addr.name, addr: addr.addr, mac : mac)
-            }
-        }
-        return addresses
-    }
+extension Defaults.Keys {
+    static let launchAtLogin = Defaults.Key<Bool>("launchAtLogin", default: false)
 }
+
+let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+var launchAtLoginMenuItem = NSMenuItem()
+var interfaceName : String = ""
+let dynRef = SCDynamicStoreCreate(kCFAllocatorSystemDefault, "iked" as CFString, nil, nil)
+let ipv4key = SCDynamicStoreCopyValue(dynRef, "State:/Network/Global/IPv4" as CFString)
+var isDeviceInterfaceConnected : Bool?
+var deviceIPAddress : String = ""
+
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
-    let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
-    @objc func changeIcon() {
-        // change the icon based on the current state (only called on application launch)
-        if let button = statusItem.button {
-            if Networking.isConnectedByEthernet {
-                button.image = NSImage(named: "WifiConnected")
-            } else {
-                button.image = NSImage(named: "WifiError")
-            }
-        }
-    }
-    @objc func openCredits() {
+class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
+    
+    @objc func openSourcePage() {
         NSWorkspace.shared.open((URL(string:"https://github.com/fivepixels/dwa140shortcut") ?? nil)!)
     }
-    @objc func ethStatus() -> String {
-        // check if the device is connected by Ethernet
-        if Networking.isConnectedByEthernet {
-            return "USB WiFi is connected."
+    
+    @objc func openDWAPreferencePane() {
+        let fileManager = FileManager.default
+        let allUsersPath = "/Library/PreferencePanes/DWA-140WirelessUtility.prefpane"
+        let currentUserPath = "~/Library/PreferencePanes/DWA-140WirelessUtility.prefPane"
+        if fileManager.fileExists(atPath: allUsersPath) {
+            NSWorkspace.shared.open(URL(fileURLWithPath: allUsersPath)) }
+        else if fileManager.fileExists(atPath: currentUserPath) {
+            NSWorkspace.shared.open(URL(fileURLWithPath: currentUserPath))
         } else {
-            return "USB WiFi is disconnected."
+            showNotification(title: "DWA-140 Shortcut Error", withText: "The preference pane does not exist.")
         }
     }
-    @objc func refreshStatus() {
-        // recreate a new instance of the application
+    
+    @objc func openNetworkPreferencePane() {
+        NSWorkspace.shared.open(URL(fileURLWithPath: "/System/Library/PreferencePanes/Network.prefPane"))
+    }
+    
+    @objc func refreshApplication() {
         let url = URL(fileURLWithPath: Bundle.main.resourcePath!)
         let path = url.deletingLastPathComponent().deletingLastPathComponent().absoluteString
         let task = Process()
@@ -128,42 +57,94 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         task.launch()
         exit(0)
     }
-    @objc func openDWA() {
-        // opens the DWA menu *if it exists* on the computer.
-        let fileman = FileManager.default
-        let alluserspath = "/Library/PreferencePanes/DWA-140WirelessUtility.prefPane"
-        let currentuserpath = "~/Library/PreferencePanes/DWA-140WirelessUtility.prefPane"
-        if fileman.fileExists(atPath: alluserspath) {
-            NSWorkspace.shared.open(URL(fileURLWithPath: alluserspath)) }
-        else if fileman.fileExists(atPath: currentuserpath) {
-            NSWorkspace.shared.open(URL(fileURLWithPath: currentuserpath))
+    
+    @objc func toggleLaunchAtLogin() {
+        let launchAtLogin = defaults[.launchAtLogin]
+        launchAtLoginMenuItem.state = !launchAtLogin ? .on : .off
+        LaunchAtLogin.isEnabled = !launchAtLogin
+        defaults[.launchAtLogin] = !launchAtLogin
+        if !launchAtLogin {
+            showNotification(title: "DWA-140 Shortcut", withText: "This application now opens as soon as you login. 😀")
+        }
+    }
+    
+    @objc func showNotification(title: String, withText: String) -> Void {
+        let notification = NSUserNotification()
+        notification.title = title
+        notification.informativeText = withText
+        notification.soundName = NSUserNotificationDefaultSoundName
+        NSUserNotificationCenter.default.delegate = self
+        NSUserNotificationCenter.default.deliver(notification)
+    }
+    
+    func getInterface() -> String {
+        // thanks NetUtils-Swift :p
+        if var dict1 = ipv4key as? [String: AnyObject] {
+            if (dict1["PrimaryInterface"] == nil) {
+                interfaceName = "none"
+            }
+            interfaceName = (dict1["PrimaryInterface"] as! String)
+        }
+        return interfaceName
+    }
+    
+    func constructMenu() {
+        let applicationMenu = NSMenu()
+        applicationMenu.addItem(NSMenuItem(title: "DWA-140 Shortcut (Source)", action: #selector(openSourcePage), keyEquivalent: ""))
+        launchAtLoginMenuItem = NSMenuItem(title: "Launch Application on Login", action: #selector(toggleLaunchAtLogin), keyEquivalent: "")
+        launchAtLoginMenuItem.state = defaults[.launchAtLogin] ? .on : .off
+        applicationMenu.addItem(launchAtLoginMenuItem)
+        applicationMenu.addItem(NSMenuItem.separator())
+        applicationMenu.addItem(NSMenuItem(title: isInterfaceConnected(), action: nil, keyEquivalent: ""))
+        applicationMenu.addItem(NSMenuItem.separator())
+        applicationMenu.addItem(NSMenuItem(title: "Refresh Status", action: #selector(refreshApplication), keyEquivalent: "r"))
+        applicationMenu.addItem(NSMenuItem(title: "Open DWA-140", action: #selector(openDWAPreferencePane), keyEquivalent: "t"))
+        applicationMenu.addItem(NSMenuItem(title: "Network Preferences", action: #selector(openNetworkPreferencePane), keyEquivalent: ""))
+        applicationMenu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: ""))
+        statusItem.menu = applicationMenu
+        
+    }
+    
+    func isInterfaceConnected() -> String {
+        if getInterface() == "en0" {
+            isDeviceInterfaceConnected = true
+            DispatchQueue.main.async {
+                self.setStatusIcon(icon: "WiFiConnected")
+            }
+            return "USB WiFi is connected. [Interface: en0]"
+        } else if getInterface() == "en1" {
+            isDeviceInterfaceConnected = true
+            DispatchQueue.main.async {
+                self.setStatusIcon(icon: "WiFiConnected")
+            }
+            return "USB WiFi is connected. [Interface: en1]"
         } else {
-            // don't do anything, preference pane doesn't exist.
+            isDeviceInterfaceConnected = false
+            DispatchQueue.main.async {
+                self.setStatusIcon(icon: "WiFiDisconnected")
+            }
+            return "USB Wifi is disconnected."
         }
     }
-    @objc func openNetwork() {
-        // open the Network pane, no need to check because every Mac *should* have this.
-            NSWorkspace.shared.open(URL(fileURLWithPath: "/System/Library/PreferencePanes/Network.prefPane"))
+    
+    func userNotificationCenter(_ center: NSUserNotificationCenter,
+                                shouldPresent notification: NSUserNotification) -> Bool {
+        return true
     }
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // after the application launches, change the icon accordingly and create the menu.
-        changeIcon()
+    
+    func setStatusIcon(icon: String) {
+        if let button = statusItem.button {
+            if button.image?.name() != icon {
+                button.image = NSImage(named: NSImage.Name(icon))
+            }
+        }
+    }
+    
+    func applicationDidFinishLaunching(_ notification: Notification) {
         constructMenu()
-        }
+    }
+    
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
-    }
-    func constructMenu() {
-        // create the menu, with titles, actions, and keyEquivalents. didn't include many keyEquivs because the menu has to be open..
-        let menu = NSMenu()
-        menu.addItem(NSMenuItem(title: "DWA-140 Shortcut (GitHub)", action: #selector(openCredits), keyEquivalent: ""))
-        menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: ethStatus(), action: nil, keyEquivalent: ""))
-        menu.addItem(NSMenuItem(title: "Refresh Status", action: #selector(refreshStatus), keyEquivalent: "r"))
-        menu.addItem(NSMenuItem(title: "Open DWA-140" , action: #selector(openDWA), keyEquivalent: "t1"))
-        menu.addItem(NSMenuItem(title: "Network Preferences" , action: #selector(openNetwork), keyEquivalent: ""))
-        menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: ""))
-        statusItem.menu = menu
     }
 }

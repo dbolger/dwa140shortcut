@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "AirPort4.png",
+      "filename" : "AirPortWarning.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "AirPort4@2x.png",
+      "filename" : "AirPortWarning@2x.png",
       "scale" : "2x"
     },
     {

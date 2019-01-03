@@ -96,6 +96,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E7D7967C21DE824F0004055A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E7DA7E3D213DD9DD00931016 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +110,7 @@
 				E7DA7E5B213DD9DD00931016 /* DWA140MenuTests */,
 				E7DA7E66213DD9DD00931016 /* DWA140MenuUITests */,
 				E7DA7E47213DD9DD00931016 /* Products */,
+				E7D7967C21DE824F0004055A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
