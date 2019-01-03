@@ -54,6 +54,7 @@
 /* Begin PBXFileReference section */
 		E768B81321D4596400A25D3B /* Defaults.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Defaults.framework; sourceTree = "<group>"; };
 		E768B81421D4596500A25D3B /* LaunchAtLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = LaunchAtLogin.framework; sourceTree = "<group>"; };
+		E7D7967F21DEB6AB0004055A /* DWA140Menu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DWA140Menu.entitlements; sourceTree = "<group>"; };
 		E7DA7E46213DD9DD00931016 /* DWA140Menu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DWA140Menu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7DA7E49213DD9DD00931016 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E7DA7E4B213DD9DD00931016 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				E7DA7E7A213DF43100931016 /* DWA140Menu-Bridging-Header.h */,
+				E7D7967F21DEB6AB0004055A /* DWA140Menu.entitlements */,
 				E768B81321D4596400A25D3B /* Defaults.framework */,
 				E768B81421D4596500A25D3B /* LaunchAtLogin.framework */,
 				E7DA7E49213DD9DD00931016 /* AppDelegate.swift */,
@@ -390,7 +392,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -445,7 +447,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;

@@ -60,6 +60,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     
     @objc func toggleLaunchAtLogin() {
         let launchAtLogin = defaults[.launchAtLogin]
+        launchAtLoginMenuItem.title = "Start at Login"
         launchAtLoginMenuItem.state = !launchAtLogin ? .on : .off
         LaunchAtLogin.isEnabled = !launchAtLogin
         defaults[.launchAtLogin] = !launchAtLogin
@@ -90,8 +91,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     
     func constructMenu() {
         let applicationMenu = NSMenu()
-        applicationMenu.addItem(NSMenuItem(title: "DWA-140 Shortcut (Source)", action: #selector(openSourcePage), keyEquivalent: ""))
-        launchAtLoginMenuItem = NSMenuItem(title: "Launch Application on Login", action: #selector(toggleLaunchAtLogin), keyEquivalent: "")
+        applicationMenu.addItem(NSMenuItem(title: "DWA-140 Shortcut", action: #selector(openSourcePage), keyEquivalent: ""))
+        launchAtLoginMenuItem = NSMenuItem(title: "Start at Login", action: #selector(self.toggleLaunchAtLogin), keyEquivalent: "")
         launchAtLoginMenuItem.state = defaults[.launchAtLogin] ? .on : .off
         applicationMenu.addItem(launchAtLoginMenuItem)
         applicationMenu.addItem(NSMenuItem.separator())
@@ -111,13 +112,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             DispatchQueue.main.async {
                 self.setStatusIcon(icon: "WiFiConnected")
             }
-            return "USB WiFi is connected. [Interface: en0]"
-        } else if getInterface() == "en1" {
-            isDeviceInterfaceConnected = true
-            DispatchQueue.main.async {
-                self.setStatusIcon(icon: "WiFiConnected")
-            }
-            return "USB WiFi is connected. [Interface: en1]"
+            return "USB WiFi is connected."
         } else {
             isDeviceInterfaceConnected = false
             DispatchQueue.main.async {
