@@ -21,24 +21,24 @@ If you're using a USB WiFi dongle on macOS, you're more than likely downloading 
 
 ## Installation 
 
-## macOS 10.12+ Release
+### macOS 10.12+ Release
 
 * Download the latest release of the software from [here](https://github.com/FivePixels/dwa140shortcut/releases).
 
-### **Make sure you have the following installed prior to installing this application:**
+#### **Make sure you have the following installed prior to installing this application:**
 
 * _RT2870USBWirelessDriver.kext_ in `/System/Library/Extensions/`
 * _DWA-140WirelessUtility.prefPane_ in either `/Library/PreferencePanes/` or `~/Library/PreferencePanes/`
 
 
-### Setup 
+#### Setup 
 
 1. Open the `DWA140Menu.dmg` file.
 2. Drag and drop the `DWA140Menu.app` contained within dmg into the Applications directory.
 3. ???
 4. :tada:
 
-## Other macOS versions
+### Other macOS versions
 
 Currently, I do not have full support for any version below macOS 10.12. I plan in the future to add full support but some of the frameworks I'm depending on only work above 10.12.
 
