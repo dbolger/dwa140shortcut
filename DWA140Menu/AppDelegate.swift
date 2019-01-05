@@ -8,27 +8,28 @@
 
 import Cocoa
 import Foundation
-import Defaults
-import LaunchAtLogin
 import SystemConfiguration
 
-extension Defaults.Keys {
-    static let launchAtLogin = Defaults.Key<Bool>("launchAtLogin", default: false)
-}
-
 let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-var launchAtLoginMenuItem = NSMenuItem()
 var interfaceName : String = ""
 let dynRef = SCDynamicStoreCreate(kCFAllocatorSystemDefault, "iked" as CFString, nil, nil)
 let ipv4key = SCDynamicStoreCopyValue(dynRef, "State:/Network/Global/IPv4" as CFString)
 var isDeviceInterfaceConnected : Bool?
-var deviceIPAddress : String = ""
+let applicationStoryboard = NSStoryboard(name: "Main", bundle: nil)
+let mainWindowController = applicationStoryboard.instantiateController(withIdentifier: "MainWindowController") as! NSWindowController
+let mainViewController = applicationStoryboard.instantiateController(withIdentifier: "MainViewController") as! NSViewController
+let tabViewController = applicationStoryboard.instantiateController(withIdentifier: "TabViewController") as! NSTabViewController
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
     
-    @objc func openSourcePage() {
-        NSWorkspace.shared.open((URL(string:"https://github.com/fivepixels/dwa140shortcut") ?? nil)!)
+    @objc func openApplicationWindow() {
+        if mainWindowController.window?.isVisible == false {
+            mainWindowController.showWindow(self)
+            NSApp.activate(ignoringOtherApps: true)
+        } else {
+            NSApp.activate(ignoringOtherApps: true)
+        }
     }
     
     @objc func openDWAPreferencePane() {
@@ -58,17 +59,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         exit(0)
     }
     
-    @objc func toggleLaunchAtLogin() {
-        let launchAtLogin = defaults[.launchAtLogin]
-        launchAtLoginMenuItem.title = "Start at Login"
-        launchAtLoginMenuItem.state = !launchAtLogin ? .on : .off
-        LaunchAtLogin.isEnabled = !launchAtLogin
-        defaults[.launchAtLogin] = !launchAtLogin
-        if !launchAtLogin {
-            showNotification(title: "DWA-140 Shortcut", withText: "This application now opens as soon as you login. 😀")
-        }
-    }
-    
     @objc func showNotification(title: String, withText: String) -> Void {
         let notification = NSUserNotification()
         notification.title = title
@@ -91,10 +81,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     
     func constructMenu() {
         let applicationMenu = NSMenu()
-        applicationMenu.addItem(NSMenuItem(title: "DWA-140 Shortcut", action: #selector(openSourcePage), keyEquivalent: ""))
-        launchAtLoginMenuItem = NSMenuItem(title: "Start at Login", action: #selector(self.toggleLaunchAtLogin), keyEquivalent: "")
-        launchAtLoginMenuItem.state = defaults[.launchAtLogin] ? .on : .off
-        applicationMenu.addItem(launchAtLoginMenuItem)
+        applicationMenu.addItem(NSMenuItem(title: "DWA-140 Shortcut", action: #selector(openApplicationWindow), keyEquivalent: ""))
         applicationMenu.addItem(NSMenuItem.separator())
         applicationMenu.addItem(NSMenuItem(title: isInterfaceConnected(), action: nil, keyEquivalent: ""))
         applicationMenu.addItem(NSMenuItem.separator())
