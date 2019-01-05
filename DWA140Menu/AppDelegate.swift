@@ -127,6 +127,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         return true
     }
     
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        constructMenu()
+    }
+    
     func setStatusIcon(icon: String) {
         if let button = statusItem.button {
             if button.image?.name() != icon {
