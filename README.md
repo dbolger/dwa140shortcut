@@ -35,8 +35,9 @@ If you're using a USB WiFi dongle on macOS, you're more than likely downloading 
 
 1. Open the `DWA140Menu.dmg` file.
 2. Drag and drop the `DWA140Menu.app` contained within dmg into the Applications directory.
-3. ???
-4. :tada:
+3. Open the DWA140Menu.app
+4. ???
+5. :tada:
 
 ### Other macOS versions
 
