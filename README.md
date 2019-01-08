@@ -17,6 +17,8 @@ If you're using a USB WiFi dongle on macOS, you're more than likely downloading 
 * Easy "shortcut" button to the DWA-140 preference pane.
 * Easy "shortcut" button to the Network Preferences preference pane.
 * Ability to refresh the current status of your network connection.
+* Toggle to open application as soon as the user logs in.
+* Update checker - let's you know when there's a new version available. 
 
 
 ## Installation 
@@ -46,7 +48,6 @@ Currently, I do not have full support for any version below macOS 10.12. I plan 
 I have created a specific version temporarily for 10.10 [here](https://github.com/FivePixels/dwa140shortcut/issues/1#issuecomment-449897887).
 
 ## Upcoming Features
-- [x] Toggle to enable application as soon as the user logs in.
 - [ ] Update the menubar correctly, without needing to reload the application.
 - [ ] Update the menubar accurately according to range.
 - [ ] Perform a check to make sure the connection isn't captive, and if it is, present the user with an error letting them know.
