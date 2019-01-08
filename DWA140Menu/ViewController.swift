@@ -14,14 +14,23 @@ class ViewController: NSViewController {
     @IBOutlet weak var loginButton: NSButton!
     @IBOutlet weak var awesomeSubtitle: NSTextField!
     @IBOutlet weak var loginSubtitle: NSTextField!
+    @IBOutlet weak var versionCheckLabel: NSButton!
     
     let defaults : UserDefaults = .standard
     let delegate = NSApplication.shared.delegate as! AppDelegate
     var loginLaunch = UserDefaults.standard.bool(forKey: "loginLaunch")
+    let appVersion = (Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String)!
+    let style = NSMutableParagraphStyle()
+    
     
     override func viewDidAppear() {
+        style.alignment = .right
+        if checkForUpdate() == "Update available" {
+            versionCheckLabel.stringValue = checkForUpdate()
+            versionCheckLabel.attributedTitle = NSAttributedString(string: "Update available", attributes: [ NSAttributedString.Key.foregroundColor : #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1), NSAttributedString.Key.paragraphStyle : style ])
+        }
         loginButton.state = loginLaunch ? .on : .off
-        versionLabel.stringValue = "Version " + (Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String)!
+        versionLabel.stringValue = "Version " + appVersion
         if loginLaunch {
             loginSubtitle.stringValue = "This application will launch when you login."
         }
@@ -38,6 +47,26 @@ class ViewController: NSViewController {
         }
     }
     
+    func checkForUpdate() -> String  {
+        var Update: String? = nil
+        if let url = URL(string: "https://raw.githubusercontent.com/FivePixels/dwa140shortcut/master/version.txt") {
+            Update = try? String(contentsOf: url, encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
+        }
+        let result = Update?.dropLast(1)
+        if Update == nil {
+            return "?"
+        } else if result!.compare(appVersion, options: .numeric, range: nil, locale: .current) == .orderedDescending {
+            return "Update available"
+        } else {
+            return "Up to date"
+        }
+    }
+    
+    @IBAction func updatePressed(_ sender: NSButton) {
+        if checkForUpdate() == "Update available" {
+            NSWorkspace.shared.open(URL(string: "https://github.com/fivepixels/dwa140shortcut/releases")!)
+        }
+    }
     @IBAction func loginButtonPressed(_ sender: NSButton) {
         toggleLoginLaunch()
         if loginLaunch {

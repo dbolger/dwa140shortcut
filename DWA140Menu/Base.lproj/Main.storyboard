@@ -834,6 +834,17 @@
                                                         <action selector="sourceButtonPressed:" target="9wW-Ed-Ez8" id="m07-Ts-gmm"/>
                                                     </connections>
                                                 </button>
+                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bx2-GW-e8o">
+                                                    <rect key="frame" x="233" y="91" width="169" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="squareTextured" title="Up to date" bezelStyle="texturedSquare" alignment="right" imageScaling="proportionallyDown" inset="2" id="j7a-Sp-hFl">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="systemLight" size="17"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="updatePressed:" target="9wW-Ed-Ez8" id="qRC-zS-7UM"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="a54-Wx-Jxc" firstAttribute="leading" secondItem="Eft-IA-k07" secondAttribute="leading" constant="126" id="5TX-7M-4y3"/>
@@ -870,6 +881,7 @@
                         <outlet property="awesomeSubtitle" destination="zkt-Ir-J68" id="STq-QI-Ka4"/>
                         <outlet property="loginButton" destination="lJe-dq-rJi" id="RTZ-Zk-gMz"/>
                         <outlet property="loginSubtitle" destination="C1E-Lz-oIr" id="QAS-Ig-kEB"/>
+                        <outlet property="versionCheckLabel" destination="bx2-GW-e8o" id="XUm-Jo-ZV5"/>
                         <outlet property="versionLabel" destination="a54-Wx-Jxc" id="c7J-BT-Ita"/>
                     </connections>
                 </viewController>
