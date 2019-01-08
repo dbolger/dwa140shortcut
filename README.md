@@ -8,9 +8,9 @@ A simple menu bar application to expedite usage of the DWA-140 preference pane. 
 
 I created this application for personal use on my macOS machine that relies on the DWA-140 preference pane. It become a task opening System Preferences, opening the pane, waiting for it to load, and hoping that my connection would be successful. (The pane itself isn't the most accurate)
 
-With this application, you are presented with a menubar icon that represents the current state of your network, as normal macOS also does. If you do not have a desirable network card, macOS doesn't give you the option to use the default WiFi menubar.
+With this application, you are presented with a menubar icon that represents the current state of your network, as normal macOS also does. If you do not have a desirable network card, macOS doesn't give you the option to use the default WiFi menubar. This application solves that problem.
 
-If you're using a USB WiFi dongle on macOS, you're more than likely downloading a driver patch for your system. This patch usually routes traffic from the dongle to your ethernet controller, connecting you to the internet. 
+If you're using a USB WiFi dongle on macOS, you're more than likely downloading a driver patch for your system. This patch usually routes traffic from the dongle to your ethernet controller, connecting you to the internet. This application checks for that specific connection, and utilizes it.
 
 ## Features
 
