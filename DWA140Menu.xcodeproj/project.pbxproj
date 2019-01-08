@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		E786F7B421E425E900A2F5EE /* LaunchAtLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E786F7B321E425E900A2F5EE /* LaunchAtLogin.framework */; };
 		E786F7B521E425E900A2F5EE /* LaunchAtLogin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E786F7B321E425E900A2F5EE /* LaunchAtLogin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E786F7B921E4261B00A2F5EE /* LaunchAtLogin.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = E786F7B821E4261A00A2F5EE /* LaunchAtLogin.framework.dSYM */; };
 		E7DA7E4A213DD9DD00931016 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA7E49213DD9DD00931016 /* AppDelegate.swift */; };
 		E7DA7E4C213DD9DD00931016 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DA7E4B213DD9DD00931016 /* ViewController.swift */; };
 		E7DA7E4E213DD9DD00931016 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7DA7E4D213DD9DD00931016 /* Assets.xcassets */; };
@@ -47,22 +46,11 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E786F7B721E4260C00A2F5EE /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 0;
-			files = (
-				E786F7B921E4261B00A2F5EE /* LaunchAtLogin.framework.dSYM in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		E786F7B221E4244F00A2F5EE /* DWA140Menu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DWA140Menu.entitlements; sourceTree = "<group>"; };
 		E786F7B321E425E900A2F5EE /* LaunchAtLogin.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LaunchAtLogin.framework; path = /Users/dylanbolger/Documents/Development/macOS/Applications/dwa140shortcut/Carthage/Build/Mac/LaunchAtLogin.framework; sourceTree = "<absolute>"; };
-		E786F7B821E4261A00A2F5EE /* LaunchAtLogin.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = LaunchAtLogin.framework.dSYM; path = /Users/dylanbolger/Documents/Development/macOS/Applications/dwa140shortcut/Carthage/Build/Mac/LaunchAtLogin.framework.dSYM; sourceTree = "<absolute>"; };
 		E7DA7E46213DD9DD00931016 /* DWA140Menu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DWA140Menu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7DA7E49213DD9DD00931016 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E7DA7E4B213DD9DD00931016 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -107,7 +95,6 @@
 		E7DA7E3D213DD9DD00931016 = {
 			isa = PBXGroup;
 			children = (
-				E786F7B821E4261A00A2F5EE /* LaunchAtLogin.framework.dSYM */,
 				E786F7B321E425E900A2F5EE /* LaunchAtLogin.framework */,
 				E7DA7E48213DD9DD00931016 /* DWA140Menu */,
 				E7DA7E5B213DD9DD00931016 /* DWA140MenuTests */,
@@ -169,7 +156,6 @@
 				E7DA7E43213DD9DD00931016 /* Frameworks */,
 				E7DA7E44213DD9DD00931016 /* Resources */,
 				E786F7B621E425E900A2F5EE /* Embed Frameworks */,
-				E786F7B721E4260C00A2F5EE /* CopyFiles */,
 				E786F7BA21E4269000A2F5EE /* ShellScript */,
 			);
 			buildRules = (
