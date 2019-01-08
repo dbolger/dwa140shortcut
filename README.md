@@ -46,7 +46,7 @@ Currently, I do not have full support for any version below macOS 10.12. I plan 
 I have created a specific version temporarily for 10.10 [here](https://github.com/FivePixels/dwa140shortcut/issues/1#issuecomment-449897887).
 
 ## Upcoming Features
-- [ ] Toggle to enable application as soon as the user logs in.
+- [x] Toggle to enable application as soon as the user logs in.
 - [ ] Update the menubar correctly, without needing to reload the application.
 - [ ] Update the menubar accurately according to range.
 - [ ] Perform a check to make sure the connection isn't captive, and if it is, present the user with an error letting them know.
