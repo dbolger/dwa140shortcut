@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import LaunchAtLogin
 
 class ViewController: NSViewController {
     
@@ -30,6 +31,11 @@ class ViewController: NSViewController {
         loginButton.state = !loginLaunch ? .on : .off
         defaults.set(!loginLaunch, forKey: "loginLaunch")
         loginLaunch = !loginLaunch
+        if loginLaunch {
+            LaunchAtLogin.isEnabled = true
+        } else {
+            LaunchAtLogin.isEnabled = false
+        }
     }
     
     @IBAction func loginButtonPressed(_ sender: NSButton) {
