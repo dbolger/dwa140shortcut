@@ -63,7 +63,6 @@
 		E7DA7E63213DD9DD00931016 /* DWA140MenuUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DWA140MenuUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7DA7E67213DD9DD00931016 /* DWA140MenuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DWA140MenuUITests.swift; sourceTree = "<group>"; };
 		E7DA7E69213DD9DD00931016 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E7DA7E7A213DF43100931016 /* DWA140Menu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DWA140Menu-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				E786F7B221E4244F00A2F5EE /* DWA140Menu.entitlements */,
-				E7DA7E7A213DF43100931016 /* DWA140Menu-Bridging-Header.h */,
 				E7DA7E49213DD9DD00931016 /* AppDelegate.swift */,
 				E7DA7E4B213DD9DD00931016 /* ViewController.swift */,
 				E7DA7E4D213DD9DD00931016 /* Assets.xcassets */,
