@@ -2,6 +2,8 @@
 
 # dwa140shortcut
 
+[![Join the chat at https://gitter.im/dwa140shortcut/community](https://badges.gitter.im/dwa140shortcut/community.svg)](https://gitter.im/dwa140shortcut/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A simple menu bar application to expedite usage of the DWA-140 preference pane. This application is especially useful for users with a Hackintosh computer build.
 
 ## Why dwa140shortcut?
